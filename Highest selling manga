@@ -54,28 +54,36 @@ Retrieve all columns from the "top_manga" table
 SELECT * FROM top_manga;
 
 Retrieve the names and authors of all manga in the database
-SELECT name, author FROM top_manga;
+SELECT name, author 
+FROM top_manga;
 
 Retrieve manga that were published after the year 2010
-SELECT * FROM top_manga WHERE year > 2010;
+SELECT * FROM top_manga 
+WHERE year > 2010;
 
 Retrieve manga that belong to the "Action" genre
-SELECT * FROM top_manga WHERE genre LIKE '%Action%';
+SELECT * FROM top_manga 
+WHERE genre LIKE '%Action%';
 
 Retrieve manga that have sold more than 20,000,000 copies:
-SELECT * FROM top_manga WHERE copies_sold > 20000000;
+SELECT * FROM top_manga 
+WHERE copies_sold > 20000000;
 
 Retrieve manga in descending order of copies sold
-SELECT * FROM top_manga ORDER BY copies_sold DESC;
+SELECT * FROM top_manga 
+ORDER BY copies_sold DESC;
 
 Retrieve the top 10 highest selling manga
-SELECT * FROM top_manga ORDER BY copies_sold DESC LIMIT 10;
+SELECT * FROM top_manga 
+ORDER BY copies_sold DESC LIMIT 10;
 
 Retrieve the distinct genres present in the database:
-SELECT DISTINCT genre FROM top_manga;
+SELECT DISTINCT genre 
+FROM top_manga;
 
 Count the number of manga in the database:
 SELECT COUNT(*) FROM top_manga;
 
 Find the total number of copies sold for all manga in the database:
-SELECT SUM(copies_sold) FROM top_manga;
+SELECT SUM(copies_sold) 
+FROM top_manga;
