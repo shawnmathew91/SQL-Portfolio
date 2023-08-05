@@ -20,7 +20,7 @@ cursor.execute('''
     )
 ''')
 
-# Sample data for the top 25 highest selling manga of all time
+# Sample data for the top 20 highest selling manga of all time
 manga_data = [
     ("One Piece", 1997, 516600000, "Eiichiro Oda", "Adventure, Fantasy"),
     ("Golgo 13", 1968, 300000000, "Takao Saito", "Action"), 
