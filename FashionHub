@@ -1,0 +1,47 @@
+-- Create the table
+CREATE TABLE FashionHub (
+    ItemID INT PRIMARY KEY,
+    ItemName VARCHAR(100),
+    Category VARCHAR(50),
+    Price INT,
+    Discount DECIMAL(5, 2),
+    StockQuantity INT
+);
+
+-- Insert data into the table
+INSERT INTO FashionHub (ItemID, ItemName, Category, Price, Discount, StockQuantity)
+VALUES
+    (1, 'Men''s T-shirt', 'T-shirts', 25, 10, 100),
+    (2, 'Women''s Blouse', 'Tops', 30, 15, 80),
+    (3, 'Men''s Jeans', 'Bottoms', 40, 5, 70),
+    (4, 'Women''s Skirt', 'Bottoms', 35, 10, 60),
+    (5, 'Unisex Sneakers', 'Footwear', 60, 10, 50),
+    (6, 'Women''s High Heels', 'Footwear', 45, 20, 40),
+    (7, 'Men''s Leather Jacket', 'Outerwear', 80, 15, 30),
+    (8, 'Women''s Winter Coat', 'Outerwear', 70, 10, 25),
+    (9, 'Leather Handbag', 'Accessories', 50, 5, 50),
+    (10, 'Men''s Sunglasses', 'Accessories', 20, 10, 30),
+    (11, 'Women''s Scarf', 'Accessories', 15, 15, 40),
+    (12, 'Men''s Formal Shirt', 'Shirts', 35, 5, 50),
+    (13, 'Women''s Party Dress', 'Dresses', 55, 20, 60),
+    (14, 'Unisex Hoodie', 'Sweatshirts', 30, 10, 70),
+    (15, 'Men''s Shorts', 'Bottoms', 20, 5, 80);
+
+-- Number of items per category
+SELECT Category, COUNT(*) AS Count
+FROM FashionHub
+GROUP BY Category;
+
+-- Average price of items in the store
+SELECT AVG(Price) AS AvgPrice
+FROM FashionHub;
+
+--Items sorted by price (ascending)
+SELECT ItemName, Category, Price
+FROM FashionHub
+ORDER BY Price ASC;
+
+-- Items sorted by price (descending)
+SELECT ItemName, Category, Price
+FROM FashionHub
+ORDER BY Price DESC;
