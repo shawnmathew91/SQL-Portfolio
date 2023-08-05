@@ -1,0 +1,55 @@
+pip install sqlite3
+
+import sqlite3
+
+# Connect to the database or create a new one if it doesn't exist
+conn = sqlite3.connect('manga_database.db')
+
+# Create a cursor object to interact with the database
+cursor = conn.cursor()
+
+# Create the table to store manga information
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS top_manga (
+        id INTEGER PRIMARY KEY,
+        name TEXT NOT NULL,
+        year INTEGER NOT NULL,
+        copies_sold INTEGER NOT NULL,
+        author TEXT NOT NULL,
+        genre TEXT NOT NULL
+    )
+''')
+
+# Sample data for the top 25 highest selling manga of all time
+manga_data = [
+    ("One Piece", 1997, 516600000, "Eiichiro Oda", "Adventure, Fantasy"),
+    ("Golgo 13", 1968, 300000000, "Takao Saito", "Action, 
+    ("Detective Conan", 1994, 270000000, "Gosho Aoyama", "Mystery, Detective"),
+    ("Dragon Ball", 1984, 260000000, "Akira Toriyama", "Action, Adventure"),
+    ("Naruto", 1999, 250000000, "Masashi Kishimoto", "Action, Adventure"),
+    ("Bleach", 2001, 120000000, "Tite Kubo", "Action, Supernatural"),
+    ("Attack on Titan", 2009, 78000000, "Hajime Isayama", "Action, Dark Fantasy"),
+    ("My Hero Academia", 2014, 30000000, "Kohei Horikoshi", "Superhero, Action"),
+    ("Demon Slayer", 2016, 27000000, "Koyoharu Gotouge", "Action, Dark Fantasy"),
+    ("Fullmetal Alchemist", 2001, 78000000, "Hiromu Arakawa", "Adventure, Steampunk"),
+    ("Case Closed", 1994, 23000000, "Gosho Aoyama", "Mystery, Detective"),
+    ("Death Note", 2003, 30000000, "Tsugumi Ohba", "Thriller, Mystery"),
+    ("Neon Genesis Evangelion", 1994, 22000000, "Yoshiyuki Sadamoto", "Mecha, Psychological"), 
+    ("JoJo's Bizarre Adventure", 1987, 110000000, "Hirohiko Araki", "Action, Adventure"),
+    ("Bleach", 2001, 120000000, "Tite Kubo", "Action, Supernatural"),
+    ("Tokyo Ghoul", 2011, 44700000, "Sui Ishida", "Dark Fantasy, Horror"),
+    ("One Punch Man", 2009, 30000000, "ONE, Yuusuke Murata", "Superhero, Comedy"),
+    ("Fairy Tail", 2006, 72500000, "Hiro Mashima", "Adventure, Fantasy"),
+    ("Hunter x Hunter", 1998, 77000000, "Yoshihiro Togashi", "Adventure, Fantasy"),
+    ("Yu Yu Hakusho", 1990, 50000000, "Yoshihiro Togashi", "Supernatural, Action"),
+    ("Gintama", 2003, 55000000, "Hideaki Sorachi", "Sci-Fi, Comedy"),
+    ("Sword Art Online", 2009, 26000000, "Reki Kawahara", "Isekai, Adventure"),
+   
+("Assassination Classroom", 2012, 25000000, "Yūsei Matsui", "Action, Comedy"),
+# Insert the data into the table
+cursor.executemany('INSERT INTO top_manga (name, year, copies_sold, author, genre) VALUES (?, ?, ?, ?, ?)', manga_data)
+
+# Commit the changes and close the connection
+conn.commit()
+conn.close()
+
