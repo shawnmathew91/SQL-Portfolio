@@ -1,0 +1,46 @@
+-- Create the table
+CREATE TABLE TechHaven (
+    ItemID INT PRIMARY KEY,
+    ItemName VARCHAR(100),
+    Category VARCHAR(50),
+    Price INT,
+    StockQuantity INT
+);
+
+-- Insert data into the table
+INSERT INTO TechHaven (ItemID, ItemName, Category, Price, StockQuantity)
+VALUES
+    (1, 'iPhone 14 Pro', 'Smartphones', 1199, 50),
+    (2, 'Samsung Galaxy Z Fold 3', 'Smartphones', 1599, 40),
+    (3, 'MacBook Pro 14"', 'Laptops', 1999, 30),
+    (4, 'Dell XPS 15"', 'Laptops', 1499, 25),
+    (5, 'PlayStation 5', 'Gaming Consoles', 499, 20),
+    (6, 'Xbox Series X', 'Gaming Consoles', 549, 15),
+    (7, 'Apple Watch Series 7', 'Smartwatches', 399, 35),
+    (8, 'Samsung Galaxy Watch 4', 'Smartwatches', 299, 45),
+    (9, 'AirPods Pro', 'Headphones', 249, 60),
+    (10, 'Sony WH-1000XM4', 'Headphones', 299, 40),
+    (11, 'iPad Pro 12.9"', 'Tablets', 999, 20),
+    (12, 'Samsung Galaxy Tab S7', 'Tablets', 699, 30),
+    (13, 'NVIDIA GeForce RTX 3080', 'Graphics Cards', 799, 10),
+    (14, 'AMD Ryzen 9 5900X', 'Processors', 499, 15),
+    (15, 'Logitech G Pro X', 'Gaming Accessories', 129, 50);
+
+-- Number of items per category
+SELECT Category, COUNT(*) AS Count
+FROM TechHaven
+GROUP BY Category;
+
+-- Average price of items in the store
+SELECT AVG(Price) AS AvgPrice
+FROM TechHaven;
+
+--Items sorted by price (ascending)
+SELECT Item Name, Category, Price
+FROM TechHaven
+ORDER BY Price ASC;
+
+--Items sorted by price (descending)
+SELECT Item Name, Category, Price
+FROM TechHaven
+ORDER BY Price DESC;
