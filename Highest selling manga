@@ -22,26 +22,26 @@ cursor.execute('''
 
 # Sample data for the top 20 highest selling manga of all time
 manga_data = [
-    ("One Piece", 1997, 516600000, "Eiichiro Oda", "Adventure, Fantasy"),
+    ("One Piece", 1997, 516600000, "Eiichiro Oda", "Adventure"),
     ("Golgo 13", 1968, 300000000, "Takao Saito", "Action"), 
-    ("Detective Conan", 1994, 270000000, "Gosho Aoyama", "Mystery, Detective"),
-    ("Dragon Ball", 1984, 260000000, "Akira Toriyama", "Action, Adventure"),
+    ("Detective Conan", 1994, 270000000, "Gosho Aoyama", "Mystery"),
+    ("Dragon Ball", 1984, 260000000, "Akira Toriyama", "Action"),
     ("Doraemon", 1969, 250000000, "Fujiko F. Fujio", "Comedy"),
-    ("Naruto", 1999, 250000000, "Masashi Kishimoto", "Action, Adventure"),
+    ("Naruto", 1999, 250000000, "Masashi Kishimoto", "Action"),
     ("Slam Dunk", 1990, 170000000, "Takehiko Inoue", "Sports"),
-    ("KochiKame", 1976, 156500000, "Osamu Akimoto" "Action),
-    ("Demon Slayer", 2016, 150000000, "Koyoharu Gotouge", "Action, Dark Fantasy"),
-    ("Oishinbo", 1983, 135000000, "Tetsu Kariya, Akira Hanasaki", "Action, Adventure"),
-    ("Bleach", 2001, 120000000, "Tite Kubo", "Action, Supernatural"),
-    ("JoJo's Bizarre Adventure", 1987, 120000000, "Hirohiko Araki", "Action, Adventure"),
-    ("Attack on Titan", 2009, 110000000, "Hajime Isayama", "Action, Dark Fantasy"),
-    ("Astro Boy", 1952, 100000000, "Osamu Tezuka", "Action, Adventure"),
-    ("My Hero Academia", 2014, 85000000, "Kohei Horikoshi", "Superhero, Action"),
-    ("Hunter x Hunter", 1998, 84000000, "Yoshihiro Togashi", "Adventure, Fantasy"),
-    ("Fullmetal Alchemist", 2001, 80000000, "Hiromu Arakawa", "Adventure, Steampunk"),
-    ("Jujutsu Kaisen", 2018, 80000000, "Gege Akutami", "Action, Adventure"),
-    ("Yu Yu Hakusho", 1990, 78000000, "Yoshihiro Togashi", "Supernatural, Action"),
-    ("Fairy Tail", 2006, 72500000, "Hiro Mashima", "Adventure, Fantasy"),
+    ("KochiKame", 1976, 156500000, "Osamu Akimoto" "Action"),
+    ("Demon Slayer", 2016, 150000000, "Koyoharu Gotouge", "Action"),
+    ("Oishinbo", 1983, 135000000, "Tetsu Kariya", "Action"),
+    ("Bleach", 2001, 120000000, "Tite Kubo", "Action"),
+    ("JoJo's Bizarre Adventure", 1987, 120000000, "Hirohiko Araki", "Action"),
+    ("Attack on Titan", 2009, 110000000, "Hajime Isayama", "Action"),
+    ("Astro Boy", 1952, 100000000, "Osamu Tezuka", "Action"),
+    ("My Hero Academia", 2014, 85000000, "Kohei Horikoshi", "Action"),
+    ("Hunter x Hunter", 1998, 84000000, "Yoshihiro Togashi", "Adventure"),
+    ("Fullmetal Alchemist", 2001, 80000000, "Hiromu Arakawa", "Adventure"),
+    ("Jujutsu Kaisen", 2018, 80000000, "Gege Akutami", "Action"),
+    ("Yu Yu Hakusho", 1990, 78000000, "Yoshihiro Togashi", "Action"),
+    ("Fairy Tail", 2006, 72500000, "Hiro Mashima", "Adventure"),
    
 # Insert the data into the table
 cursor.executemany('INSERT INTO top_manga (name, year, copies_sold, author, genre) VALUES (?, ?, ?, ?, ?)', manga_data)
@@ -87,3 +87,123 @@ SELECT COUNT(*) FROM top_manga;
 Find the total number of copies sold for all manga in the database:
 SELECT SUM(copies_sold) 
 FROM top_manga;
+
+As the current data set only contains one table ("top_manga"), we need to create additional tables with related information to demonstrate JOIN queries effectively. Let's create two more tables: "authors" and "genres."
+
+Create the "authors" table:
+CREATE TABLE authors (
+    author_id INTEGER PRIMARY KEY,
+    author_name TEXT
+);
+
+INSERT INTO authors (author_name) VALUES
+    ("Eiichiro Oda"),
+    ("Takao Saito"), 
+    ("Gosho Aoyama"),
+    ("Akira Toriyama"),
+    ("Fujiko F. Fujio"),
+    ("Masashi Kishimoto"),
+    ("Takehiko Inoue"),
+    ("Osamu Akimoto"),
+    ("Koyoharu Gotouge"),
+    ("Tetsu Kariya"),
+    ("Tite Kubo"),
+    ("Hirohiko Araki"),
+    ("Hajime Isayama"),
+    ("Osamu Tezuka"),
+    ("Kohei Horikoshi"),
+    ("Yoshihiro Togashi"),
+    ("Hiromu Arakawa"),
+    ("Gege Akutami"),
+    ("Yoshihiro Togashi"),
+    ("Hiro Mashima");
+
+Create the "genres" table:
+CREATE TABLE genres (
+    genre_id INTEGER PRIMARY KEY,
+    genre_name TEXT
+);
+
+INSERT INTO genres (genre_name) VALUES
+    ("Adventure"),
+    ("Action"), 
+    ("Mystery"),
+    ("Action"),
+    ("Comedy"),
+    ("Action"),
+    ("Sports"),
+    ("Action"),
+    ("Action"),
+    ("Action"),
+    ("Action"),
+    ("Action"),
+    ("Action"),
+    ("Action"),
+    ("Action"),
+    ("Adventure"),
+    ("Adventure"),
+    ("Action"),
+    ("Action"),
+    ("Adventure");
+
+Modify the "top_manga" table to include foreign keys to "authors" and "genres":
+ALTER TABLE top_manga ADD COLUMN author_id INTEGER;
+ALTER TABLE top_manga ADD COLUMN genre_id INTEGER;
+
+UPDATE top_manga SET author_id = 1 WHERE author = 'Naoko Takeuchi';
+UPDATE top_manga SET author_id = 2 WHERE author = 'Eiichiro Oda';
+UPDATE top_manga SET author_id = 3 WHERE author = 'Gosho Aoyama';
+UPDATE top_manga SET author_id = 4 WHERE author = 'Akira Toriyama';
+UPDATE top_manga SET author_id = 5 WHERE author = 'Fujiko F. Fujio';
+UPDATE top_manga SET author_id = 6 WHERE author = 'Masashi Kishimoto';
+UPDATE top_manga SET author_id = 7 WHERE author = 'Takehiko Inoue';
+UPDATE top_manga SET author_id = 8 WHERE author = 'Osamu Akimoto';
+UPDATE top_manga SET author_id = 9 WHERE author = 'Koyoharu Gotouge';
+UPDATE top_manga SET author_id = 10 WHERE author = 'Tetsu Kariya';
+UPDATE top_manga SET author_id = 11 WHERE author = 'Tite Kubo';
+UPDATE top_manga SET author_id = 12 WHERE author = 'Hirohiko Araki';
+UPDATE top_manga SET author_id = 13 WHERE author = 'Hajime Isayama';
+UPDATE top_manga SET author_id = 14 WHERE author = 'Osamu Tezuka';
+UPDATE top_manga SET author_id = 15 WHERE author = 'Kohei Horikoshi';
+UPDATE top_manga SET author_id = 16 WHERE author = 'Yoshihiro Togashi';
+UPDATE top_manga SET author_id = 17 WHERE author = 'Hiromu Arakawa';
+UPDATE top_manga SET author_id = 18 WHERE author = 'Gege Akutami';
+UPDATE top_manga SET author_id = 19 WHERE author = 'Yoshihiro Togashi';
+UPDATE top_manga SET author_id = 20 WHERE author = 'Hiro Mashima';
+
+UPDATE top_manga SET genre_id = 1 WHERE genre = 'Adventure';
+UPDATE top_manga SET genre_id = 2 WHERE genre = 'Action';
+UPDATE top_manga SET genre_id = 3 WHERE genre = 'Mystery';
+UPDATE top_manga SET genre_id = 4 WHERE genre = 'Action';
+UPDATE top_manga SET genre_id = 5 WHERE genre = 'Comedy';
+UPDATE top_manga SET genre_id = 6 WHERE genre = 'Action';
+UPDATE top_manga SET genre_id = 7 WHERE genre = 'Sports';
+UPDATE top_manga SET genre_id = 8 WHERE genre = 'Action';
+UPDATE top_manga SET genre_id = 9 WHERE genre = 'Action';
+UPDATE top_manga SET genre_id = 10 WHERE genre = 'Action';
+UPDATE top_manga SET genre_id = 11 WHERE genre = 'Action';
+UPDATE top_manga SET genre_id = 12 WHERE genre = 'Action';
+UPDATE top_manga SET genre_id = 13 WHERE genre = 'Action';
+UPDATE top_manga SET genre_id = 14 WHERE genre = 'Action';
+UPDATE top_manga SET genre_id = 15 WHERE genre = 'Action';
+UPDATE top_manga SET genre_id = 16 WHERE genre = 'Adventure';
+UPDATE top_manga SET genre_id = 17 WHERE genre = 'Adventure';
+UPDATE top_manga SET genre_id = 18 WHERE genre = 'Action';
+UPDATE top_manga SET genre_id = 19 WHERE genre = 'Action';
+UPDATE top_manga SET genre_id = 20 WHERE genre = 'Adventure';
+
+Retrieve manga with their corresponding authors:
+SELECT top_manga.name AS manga_name, authors.author_name AS author_name
+FROM top_manga
+JOIN authors ON top_manga.author_id = authors.author_id;
+
+Retrieve manga with their corresponding genres:
+SELECT top_manga.name AS manga_name, genres.genre_name AS genre_name
+FROM top_manga
+JOIN genres ON top_manga.genre_id = genres.genre_id;
+
+Retrieve manga with both their authors and genres:
+SELECT top_manga.name AS manga_name, authors.author_name AS author_name, genres.genre_name AS genre_name
+FROM top_manga
+JOIN authors ON top_manga.author_id = authors.author_id
+JOIN genres ON top_manga.genre_id = genres.genre_id;
