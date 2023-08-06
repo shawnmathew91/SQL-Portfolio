@@ -1,5 +1,5 @@
 -- Create the table
-CREATE TABLE FashionHub (
+CREATE TABLE TrendHub (
     ItemID INT PRIMARY KEY,
     ItemName VARCHAR(100),
     Category VARCHAR(50),
@@ -9,7 +9,7 @@ CREATE TABLE FashionHub (
 );
 
 -- Insert data into the table
-INSERT INTO FashionHub (ItemID, ItemName, Category, Price, Discount, StockQuantity)
+INSERT INTO TrendHub (ItemID, ItemName, Category, Price, Discount, StockQuantity)
 VALUES
     (1, 'Men''s T-shirt', 'T-shirts', 25, 10, 100),
     (2, 'Women''s Blouse', 'Tops', 30, 15, 80),
@@ -29,19 +29,19 @@ VALUES
 
 -- Number of items per category
 SELECT Category, COUNT(*) AS Count
-FROM FashionHub
+FROM TrendHub
 GROUP BY Category;
 
 -- Average price of items in the store
 SELECT AVG(Price) AS AvgPrice
-FROM FashionHub;
+FROM TrendHub;
 
 --Items sorted by price (ascending)
 SELECT ItemName, Category, Price
-FROM FashionHub
+FROM TrendHub
 ORDER BY Price ASC;
 
 -- Items sorted by price (descending)
 SELECT ItemName, Category, Price
-FROM FashionHub
+FROM TrendHub
 ORDER BY Price DESC;
