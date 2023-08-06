@@ -170,7 +170,6 @@ UPDATE top_manga SET author_id = 17 WHERE author = 'Hiromu Arakawa';
 UPDATE top_manga SET author_id = 18 WHERE author = 'Gege Akutami';
 UPDATE top_manga SET author_id = 19 WHERE author = 'Yoshihiro Togashi';
 UPDATE top_manga SET author_id = 20 WHERE author = 'Hiro Mashima';
-
 UPDATE top_manga SET genre_id = 1 WHERE genre = 'Adventure';
 UPDATE top_manga SET genre_id = 2 WHERE genre = 'Action';
 UPDATE top_manga SET genre_id = 3 WHERE genre = 'Mystery';
